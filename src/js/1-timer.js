@@ -17,7 +17,7 @@ const dataValueMinutes = document.querySelector('span[data-minutes]');
 const dataValueSeconds = document.querySelector('span[data-seconds]');
 
 startBtn.disabled = true;
-inputValueTimer.classList.add('input-check');
+startBtn.style.backgroundColor = '#cfcfcf';
 
 const options = {
   enableTime: true,
@@ -39,30 +39,14 @@ function onCloseHandler(selectedDates) {
       messageSize: 16,
       backgroundColor: '#EF4040',
       position: 'topRight',
-      maxWidth: 902,
+      maxWidth: 800,
       close: false,
     });
 
     startBtn.disabled = true;
-    startBtn.style.backgroundColor = '#cfcfcf';
-  } else {
-    startBtn.addEventListener('click', successfully => {
-      iziToast.show({
-        iconUrl: check,
-        title: 'OK',
-        titleSize: 16,
-        message: 'Timer on',
-        messageColor: '#ffffff',
-        titleColor: '#ffffff',
-        messageSize: 16,
-        backgroundColor: '#59A10D',
-        position: 'topRight',
-        maxWidth: 902,
-        close: false,
-      });
-      startBtn.removeEventListener('click', successfully);
-    });
+  }
 
+  else {
     startBtn.disabled = false;
     startBtn.style.backgroundColor = '';
     userSelectedDate = selectedDates[0];
@@ -114,6 +98,20 @@ function updateTimer() {
 startBtn.addEventListener('click', startTimer);
 
 function startTimer() {
+  startBtn.style.backgroundColor = '#cfcfcf';
+   iziToast.show({
+     iconUrl: check,
+     title: 'OK',
+     titleSize: 16,
+     message: 'Timer on',
+     messageColor: '#ffffff',
+     titleColor: '#ffffff',
+     messageSize: 16,
+     backgroundColor: '#59A10D',
+     position: 'topRight',
+     maxWidth: 800,
+     close: false,
+   });
   updateTimer();
   changeDateValue = setInterval(updateTimer, 1000);
 }
